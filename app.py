@@ -1,9 +1,11 @@
 import streamlit as st
 import requests
 import time
+import os
 
 st.title("Runpod AI Endpoint Caller")
 st.write("api_key:", st.secrets["api_key"])
+os.environ["api_key"] == st.secrets["api_key"]
 
 
 query = st.text_input("Enter your query:", "Which city are we talking about?")

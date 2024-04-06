@@ -3,7 +3,7 @@ import requests
 import time
 import os
 
-st.title("Runpod AI Endpoint Caller")
+st.title("Saratoga City Code Chatbot")
 
 # Accessing the secret
 api_key = st.secrets["api_key"]

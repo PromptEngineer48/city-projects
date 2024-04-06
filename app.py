@@ -4,9 +4,13 @@ import time
 import os
 
 st.title("Runpod AI Endpoint Caller")
-st.write("api_key:", st.secrets["api_key"])
-os.environ["api_key"] = st.secrets["api_key"]
 
+# Accessing the secret
+api_key = st.secrets["api_key"]
+st.write("api_key:", api_key)
+
+# Setting environment variable
+os.environ["api_key"] = api_key
 
 query = st.text_input("Enter your query:", "Which city are we talking about?")
 namespace = st.text_input("Enter the namespace:", "Saratoga_CA")

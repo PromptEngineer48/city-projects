@@ -7,7 +7,7 @@ st.title("Runpod AI Endpoint Caller")
 
 # Accessing the secret
 api_key = st.secrets["api_key"]
-st.write("api_key:", api_key)
+# st.write("api_key:", api_key)
 
 # Setting environment variable
 os.environ["api_key"] = api_key

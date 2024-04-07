@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import time
 import os
+import chardet
 
 st.title("Saratoga City Code Chatbot")
 
@@ -11,6 +12,11 @@ api_key = st.secrets["api_key"]
 
 # Setting environment variable
 os.environ["api_key"] = api_key
+
+# Function to get or create session state
+def get_session_state():
+    return st.session_state.setdefault("session_state", {"history": []})
+
 
 session_state = get_session_state()
 history = session_state["history"]

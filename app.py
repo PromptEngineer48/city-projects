@@ -12,12 +12,11 @@ api_key = st.secrets["api_key"]
 # Setting environment variable
 os.environ["api_key"] = api_key
 
-query = st.text_input("Enter your query:", "Which city are we talking about?")
-namespace = st.text_input("Enter the namespace:", "Saratoga_CA")
+session_state = get_session_state()
+history = session_state["history"]
 
 # Button to trigger API call
 if st.button("Submit"):
-
     if query and namespace:
         # st.write("Calling API...")
         url = "https://api.runpod.ai/v2/pbcl4e8kpra3pl/run"
@@ -25,7 +24,10 @@ if st.button("Submit"):
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
         }
-        payload = {"input": {"query": query, "namespace": namespace}}
+        payload = {
+            "input": {"query": query, "namespace": namespace, "history": history}
+        }
+        # st.write(history)
         response = requests.post(url, json=payload, headers=headers)
 
         if response.status_code == 200:
@@ -73,9 +75,13 @@ if st.button("Submit"):
                     st.write("**URLS:**")
                     st.write(urls)
 
-                    history = output[1]
+                    history.append({"Question": query, "Answer": answer})
+                    history = history[-8:]
+                    session_state["history"] = history  # Update session state
+
                     st.write("**History:**")
                     st.write(history)
+
                 else:
                     print("No output found in the response.")
 

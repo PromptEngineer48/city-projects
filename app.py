@@ -3,6 +3,10 @@ import requests
 import time
 import os
 
+# Function to get or create session state
+def get_session_state():
+    return st.session_state.setdefault("session_state", {"history": []})
+    
 st.title("Saratoga City Code Chatbot")
 
 # Accessing the secret
@@ -12,9 +16,6 @@ api_key = st.secrets["api_key"]
 # Setting environment variable
 os.environ["api_key"] = api_key
 
-# Function to get or create session state
-def get_session_state():
-    return st.session_state.setdefault("session_state", {"history": []})
 
 
 session_state = get_session_state()
@@ -94,4 +95,5 @@ if st.button("Submit"):
             st.write("Error:", response.status_code)
     else:
         st.write("Please fill in both query and namespace fields.")
+
 

@@ -19,7 +19,7 @@ history = session_state["history"]
 if st.button("Submit"):
     if query and namespace:
         # st.write("Calling API...")
-        url = "https://api.runpod.ai/v2/pbcl4e8kpra3pl/run"
+        url = "https://api.runpod.ai/v2/axpsi6267k0qjz/run"
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ if st.button("Submit"):
                 # st.write("Waiting for job to complete...")
                 time.sleep(1)  # Wait for 1 second before checking again
                 status_response = requests.get(
-                    f"https://api.runpod.ai/v2/pbcl4e8kpra3pl/status/{job_id}",
+                    f"https://api.runpod.ai/v2/axpsi6267k0qjz/status/{job_id}",
                     headers=headers,
                 )
                 if status_response.status_code == 200:

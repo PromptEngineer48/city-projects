@@ -18,6 +18,11 @@ os.environ["api_key"] = api_key
 
 query = st.text_input("Enter your query:", "Which city are we talking about?")
 namespace = st.text_input("Enter the namespace:", "Saratoga_CA")
+system_prompt = st.text_input(
+    "Enter the System Prompt",
+    "Answer the question based on the context below. You are a chatbot designed for this purpose. Retrict your replies to being a city code chatbot only",
+)
+
 
 session_state = get_session_state()
 history = session_state["history"]
@@ -32,7 +37,12 @@ if st.button("Submit"):
             "Content-Type": "application/json",
         }
         payload = {
-            "input": {"query": query, "namespace": namespace, "history": history}
+            "input": {
+                "query": query,
+                "namespace": namespace,
+                "history": history,
+                "system_prompt": system_prompt,
+            }
         }
         # st.write(history)
         response = requests.post(url, json=payload, headers=headers)

@@ -20,7 +20,7 @@ if st.button("Submit"):
 
     if query and namespace:
         # st.write("Calling API...")
-        url = "https://api.runpod.ai/v2/rtcmp1n94s380a/run"
+        url = "https://api.runpod.ai/v2/pbcl4e8kpra3pl/run"
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ if st.button("Submit"):
                 # st.write("Waiting for job to complete...")
                 time.sleep(1)  # Wait for 1 second before checking again
                 status_response = requests.get(
-                    f"https://api.runpod.ai/v2/rtcmp1n94s380a/status/{job_id}",
+                    f"https://api.runpod.ai/v2/pbcl4e8kpra3pl/status/{job_id}",
                     headers=headers,
                 )
                 if status_response.status_code == 200:
@@ -66,7 +66,16 @@ if st.button("Submit"):
                     ]  # Extracting the first element from the 'output' list
                     # print("Answer:", answer)
                     # st.title("Bot Reply:")
+                    st.write("**Bot Answer**")
                     st.write(answer)
+
+                    urls = output[2]
+                    st.write("**URLS:**")
+                    st.write(urls)
+
+                    history = output[1]
+                    st.write("**History:**")
+                    st.write(history)
                 else:
                     print("No output found in the response.")
 
@@ -74,3 +83,4 @@ if st.button("Submit"):
             st.write("Error:", response.status_code)
     else:
         st.write("Please fill in both query and namespace fields.")
+

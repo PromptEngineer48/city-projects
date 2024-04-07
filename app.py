@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 import time
 import os
-import chardet
 
 st.title("Saratoga City Code Chatbot")
 

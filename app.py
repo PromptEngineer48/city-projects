@@ -16,7 +16,8 @@ api_key = st.secrets["api_key"]
 # Setting environment variable
 os.environ["api_key"] = api_key
 
-
+query = st.text_input("Enter your query:", "Which city are we talking about?")
+namespace = st.text_input("Enter the namespace:", "Saratoga_CA")
 
 session_state = get_session_state()
 history = session_state["history"]
